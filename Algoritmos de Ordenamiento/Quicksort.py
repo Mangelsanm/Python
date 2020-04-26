@@ -1,28 +1,29 @@
 def quick_sort(Elementos, izquierda, derecha):
-    pivote = derecha-1
-    derecha = derecha - 2
-    
     if izquierda < derecha:
-    
-        while izquierda <= derecha:
-            if izquierda == derecha:
-                break
-            while Elementos[izquierda] < Elementos[pivote]:
-                izquierda += 1
-            while Elementos[derecha] > Elementos[pivote] and izquierda < derecha:
-                derecha -= 1
-            if izquierda < derecha:
-                auxiliar = Elementos[izquierda]
-                Elementos[izquierda] = Elementos[derecha]
-                Elementos[derecha] = auxiliar    
+        global i
+        pivote = derecha-1
+        i = izquierda
+        j = derecha - 2
         
-        auxiliar = Elementos[izquierda]
-        Elementos[izquierda] = Elementos[pivote]
+        while i <= j:
+            if i == j:
+                break
+            while Elementos[i] < Elementos[pivote]:
+                i += 1
+            while Elementos[j] > Elementos[pivote] and i < j:
+                j -= 1
+            if i < j:
+                auxiliar = Elementos[i]
+                Elementos[i] = Elementos[j]
+                Elementos[j] = auxiliar    
+        
+        auxiliar = Elementos[i]
+        Elementos[i] = Elementos[pivote]
         Elementos[pivote] = auxiliar
 
-        pivote = izquierda
-        quick_sort(Elementos, 0, pivote)
-        quick_sort(Elementos, pivote+1, 10)
+        pivote = i
+        quick_sort(Elementos, izquierda, pivote)
+        quick_sort(Elementos, pivote+1, derecha)
 
 Elementos = []
 primer_elemento = 0
