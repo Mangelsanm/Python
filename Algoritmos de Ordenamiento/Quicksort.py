@@ -6,17 +6,18 @@ def quick_sort(Elementos, izquierda, derecha):
         j = derecha - 2
         
         while i <= j:
-            if i == j:
-                break
+            #if i == j:
+            #    break
             while Elementos[i] < Elementos[pivote]:
                 i += 1
-            while Elementos[j] > Elementos[pivote] and i < j:
+            while Elementos[j] > Elementos[pivote]:# and i < j:
                 j -= 1
             if i < j:
                 auxiliar = Elementos[i]
                 Elementos[i] = Elementos[j]
-                Elementos[j] = auxiliar    
-        
+                Elementos[j] = auxiliar
+
+        #if Elementos[i] > Elementos[pivote]:
         auxiliar = Elementos[i]
         Elementos[i] = Elementos[pivote]
         Elementos[pivote] = auxiliar
