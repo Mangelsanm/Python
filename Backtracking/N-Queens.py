@@ -11,9 +11,44 @@ class Queens:
             return True
         
         # Recorremos de manera vertical, para colocar nuestra reyna.
-        for row_index in self.nQueens:
+        for row_index in range(self.nQueens):
             if self.valid_position(row_index, col_index):
                 self.chess_table[row_index][col_index] = 1
 
+                # Tratamos de buscar la ubicacion de la siguiente reyna.
+                if self.solve(col_index + 1):
+                    return True
+
+                # Backtrack
+                self.chess_table[row_index][col_index] = 0
+        # Cuando hemos considerado todos los renglones de una columna
+        # y no hemos encontrado una celda valida.
+        return False
+
+    def valid_position(self, row_index, col_index):
+        # Revisamos horizontalmente si la casilla es valida.
+        for i in range(self.nQueens):
+            if self.chess_table[row_index][i] == 1:
+                return False
+
+        # Revisamos la diagonal superior del lado izquierdo.
+        j = col_index
+        for i in range(self.nQueens, -1, -1):
+            if i < 0:
+                break
+            if self.chess_table[i][j] == 1:
+                return False
+            j = j - 1
+        
+        # Revisamos la diagonal inferior del lado izquierdo.
+        j = col_index
+        for i in range(row_index, len(self.nQueens)):
+            if j < 0:
+                break
+            if self.chess_table[i][j] == 1:
+                return False
+            j = j - 1
+        
+        return True
 
 x = Queens(4)
