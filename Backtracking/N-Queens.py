@@ -1,9 +1,16 @@
+
 class Queens:
 
     # Constructor
     def __init__(self, nQueens):
         self.nQueens = nQueens
         self.chess_table = [[0 for i in range(nQueens)] for j in range(nQueens)]
+    
+    def solve_queens(self):
+        if self.solve(0):
+            self.print_queens()
+        else:
+            print('No hay solucion para este numero de reynas')
     
     def solve(self, col_index):
         # Caso base, col_index llego al limite de la matriz, quiere decir que resolvio el problema.
@@ -33,7 +40,7 @@ class Queens:
 
         # Revisamos la diagonal superior del lado izquierdo.
         j = col_index
-        for i in range(self.nQueens, -1, -1):
+        for i in range(row_index, -1, -1):
             if i < 0:
                 break
             if self.chess_table[i][j] == 1:
@@ -42,7 +49,7 @@ class Queens:
         
         # Revisamos la diagonal inferior del lado izquierdo.
         j = col_index
-        for i in range(row_index, len(self.nQueens)):
+        for i in range(row_index, self.nQueens):
             if j < 0:
                 break
             if self.chess_table[i][j] == 1:
@@ -51,4 +58,15 @@ class Queens:
         
         return True
 
-x = Queens(4)
+    def print_queens(self):
+        for i in range(self.nQueens):
+            for j in range(self.nQueens):
+                if self.chess_table[i][j] == 1:
+                    print(' Q ', end = '')
+                else:
+                    print(' - ', end = '')
+            print('\n')        
+
+if __name__ == '__main__':
+    x = Queens(8)
+    x.solve_queens()
