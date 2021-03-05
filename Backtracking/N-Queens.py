@@ -1,6 +1,13 @@
 
 class Queens:
 
+    """
+    EL problema de las N-Reynas (N-Queens) consiste en colocar N reynas del ajedrez,
+    en un tablero de NxN, sin que se ataquen una a la otra.
+    La idea es colocar las reynas una a una en diferentes columnas, comenzando por 
+    la calumna de la izquierda
+    """
+
     # Constructor
     def __init__(self, nQueens):
         self.nQueens = nQueens
@@ -68,5 +75,5 @@ class Queens:
             print('\n')        
 
 if __name__ == '__main__':
-    x = Queens(8)
-    x.solve_queens()
+    queen = Queens(4)
+    queen.solve_queens()
