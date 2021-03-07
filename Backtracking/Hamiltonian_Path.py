@@ -7,7 +7,7 @@ class Hamiltonian_Path:
 
     def Hamiltonian_Solve(self):
         if self.solve(1):
-            self.show_path
+            self.show_path()
         else:
             print('There is not solution')
     
@@ -16,8 +16,8 @@ class Hamiltonian_Path:
             return True
 
         for vertex in range(1, self.n):
-            if self.is_valid(position, vertex):
-                self.path.append(position)
+            if self.is_valid(vertex, position):
+                self.path.append(vertex)
 
                 if self.solve(position + 1):
                     return True
@@ -26,11 +26,11 @@ class Hamiltonian_Path:
 
         return False
     
-    def is_valid(self, position, vertex):
+    def is_valid(self, vertex, position):
         if self.Hamiltonian_Matrix[self.path[position - 1]][vertex] == 0:
             return False
 
-        for i in range(1, self.n):
+        for i in range(position):
             if self.path[i] == vertex:
                 return False
 
@@ -40,11 +40,11 @@ class Hamiltonian_Path:
         for v in self.path:
             print(v)
 
-m = [[0, 1, 0, 0, 0, 1],
-     [1, 0, 1, 0, 0, 0],
-     [0, 1, 0, 1, 1, 0],
-     [0, 0, 1, 0, 1, 0],
-     [0, 0, 1, 1, 0, 1],
+m = [[0, 1, 0, 1, 0, 1],
+     [1, 0, 0, 1, 0, 0],
+     [0, 0, 0, 1, 1, 0],
+     [1, 1, 1, 0, 0, 0],
+     [0, 0, 1, 0, 0, 1],
      [1, 0, 0, 0, 1, 0]]
 
 hamitonian = Hamiltonian_Path(m)
